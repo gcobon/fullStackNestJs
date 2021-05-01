@@ -5,7 +5,7 @@ import {
 import { EntityRepository, Repository } from 'typeorm';
 import { AuthCredentialDto } from './dto/auth-credentials.dto';
 import { User } from './user.entity';
-import * as bcrypt from 'bcrypt';
+import * as bcryptjs from 'bcryptjs';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -13,10 +13,10 @@ export class UserRepository extends Repository<User> {
     const { username, password } = authCredentialsDto;
 
     /** generate salt */
-    const salt = bcrypt.genSaltSync();
+    const salt = bcryptjs.genSaltSync();
 
     /** Hash the password */
-    const hash = bcrypt.hashSync(password, salt);
+    const hash = bcryptjs.hashSync(password, salt);
 
     const user = new User();
     user.username = username;
