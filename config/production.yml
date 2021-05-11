@@ -1,5 +1,5 @@
 server:
-  origin: https://api-nestjs-udemy.herokuapp.com/
+  origin: https://nestjs-frontend.netlify.app/
 
 db:
   synchronize: false
