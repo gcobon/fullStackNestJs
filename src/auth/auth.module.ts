@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.stategy';
 import { UserRepository } from './user.repository';
 import * as config from 'config';
+import { ConfigService } from '@nestjs/config';
 
 const jwtConfig = config.get('jwt');
 
@@ -23,4 +24,8 @@ const jwtConfig = config.get('jwt');
   providers: [AuthService, JwtStrategy],
   exports: [JwtStrategy, PassportModule],
 })
-export class AuthModule {}
+export class AuthModule {
+  constructor(private configService: ConfigService) {
+    console.log(this.configService.get('DB_PORT'));
+  }
+}
