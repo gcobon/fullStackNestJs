@@ -1,5 +1,5 @@
 server:
-  origin: https://nestjs-frontend.netlify.app/
+  origin: https://nestjs-frontend.netlify.app
 
 db:
   synchronize: false

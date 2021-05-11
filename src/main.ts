@@ -10,14 +10,9 @@ async function bootstrap() {
   const serverConfig = config.get('server');
   const configService = app.get(ConfigService);
 
-  const environment = configService.get('NODE_ENV');
+  app.enableCors();
 
-  if (environment === 'development') {
-    app.enableCors();
-  } else {
-    app.enableCors({ origin: serverConfig.origin });
-    logger.log(`Accepting requests from origin "${serverConfig.origin}"`);
-  }
+  logger.log(`Accepting requests from origin "${serverConfig.origin}"`);
 
   const port = configService.get('PORT') || serverConfig.port;
   await app.listen(port);
